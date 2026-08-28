@@ -1,0 +1,90 @@
+# Central configuration for the Flickr8k image-captioning pipeline.
+# Every script (download, split, vocab, feature extraction, training,
+# evaluation, serving) reads its settings from this file so behaviour
+# stays consistent and reproducible across runs.
+
+project:
+  name: flickr8k-caption-gen
+  seed: 42
+
+dataset:
+  kaggle_handle: "adityajn105/flickr8k"
+  raw_dir: "data/raw"
+  images_subdir: "Images"          # sub-folder inside the Kaggle download that holds the .jpg files
+  captions_file: "captions.txt"    # csv file: image,caption (5 rows per image)
+  processed_dir: "data/processed"
+  captions_per_image: 5
+  split:
+    train: 0.80
+    val: 0.10
+    test: 0.10
+    # Splitting is done on unique image ids, never on individual captions,
+    # so all 5 captions of a given image always fall in the same split.
+
+image:
+  size: 224                        # input resolution expected by the CNN backbone
+  mean: [0.485, 0.456, 0.406]      # ImageNet normalization statistics
+  std: [0.229, 0.224, 0.225]
+
+vocab:
+  min_word_freq: 5                 # words rarer than this become <unk>
+  max_caption_len: 35              # captions longer than this (incl. <start>/<end>) are truncated
+  pad_token: "<pad>"
+  start_token: "<start>"
+  end_token: "<end>"
+  unk_token: "<unk>"
+  vocab_path: "artifacts/vocab.json"
+
+features:
+  backbone: "resnet50"             # resnet50 | resnet101 | efficientnet_b0 | inception_v3
+  pretrained: true
+  spatial: true                    # true -> keep 7x7 spatial grid for attention, false -> global pooled vector
+  feature_dim: 2048
+  spatial_size: 7                  # 7x7 for resnet50/101 at 224 input
+  cache_dir: "artifacts/features"
+  cache_format: "npy"              # one .npy per image, keyed by image_id
+
+model:
+  embed_dim: 256
+  decoder_type: "lstm"             # lstm | gru
+  hidden_dim: 512
+  attention_dim: 256
+  num_layers: 1
+  dropout: 0.5
+  fine_tune_encoder: false         # keep the CNN frozen (pure transfer learning)
+
+training:
+  batch_size: 64
+  num_epochs: 40
+  learning_rate: 3.0e-4
+  weight_decay: 1.0e-5
+  grad_clip: 5.0
+  teacher_forcing_ratio: 1.0
+  early_stopping_patience: 5
+  lr_scheduler:
+    type: "reduce_on_plateau"
+    factor: 0.5
+    patience: 2
+    min_lr: 1.0e-6
+  checkpoint_dir: "artifacts/checkpoints"
+  best_checkpoint_name: "best_model.pt"
+  last_checkpoint_name: "last_model.pt"
+  log_dir: "artifacts/logs"
+  num_workers: 2
+  device: "auto"                   # auto | cpu | cuda
+
+evaluation:
+  beam_size: 3
+  max_gen_len: 35
+  results_dir: "artifacts/results"
+  num_qualitative_examples: 10
+
+serving:
+  api_host: "0.0.0.0"
+  api_port: 8000
+  gradio_port: 7860
+  default_checkpoint: "artifacts/checkpoints/best_model.pt"
+
+hub:
+  repo_id: "your-username/flickr8k-caption-gen"
+  repo_type: "model"

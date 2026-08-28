@@ -1,0 +1,31 @@
+# Data & artifacts (large, reproducible via scripts/, not versioned)
+data/raw/
+data/processed/
+artifacts/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.coverage
+htmlcov/
+*.egg-info/
+build/
+dist/
+
+# Environments
+.venv/
+venv/
+env/
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+
+# Kaggle credentials must never be committed
+kaggle.json
+
+# Hugging Face / torch caches
+.cache/
