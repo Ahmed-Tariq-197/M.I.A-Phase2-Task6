@@ -1,0 +1,41 @@
+{
+  "data_source": "anki_tatoeba_eng_fra",
+  "n_train": 16200,
+  "n_val": 1800,
+  "n_test": 2000,
+  "src_vocab_size": 5812,
+  "tgt_vocab_size": 8000,
+  "fasttext_training_seconds": 16.438602924346924,
+  "fasttext_src_coverage": 1.0,
+  "fasttext_tgt_coverage": 1.0,
+  "baseline": {
+    "bleu": 25.357237095005658,
+    "rouge1": 53.27173018088727,
+    "rouge2": 32.08252411173821,
+    "rougeL": 52.204297377239584,
+    "test_loss": 2.048611044883728,
+    "token_accuracy": 0.5986500196158886
+  },
+  "fasttext": {
+    "bleu": 18.76762018295948,
+    "rouge1": 44.48341680456186,
+    "rouge2": 24.715764001335685,
+    "rougeL": 43.541798700417395,
+    "test_loss": 2.3902028761804104,
+    "token_accuracy": 0.5414836835116148
+  },
+  "baseline_epochs_run": 8,
+  "fasttext_epochs_run": 8,
+  "baseline_training_seconds": 1709.056869983673,
+  "fasttext_model_training_seconds": 1500.8397643566132,
+  "fasttext_frozen": {
+    "bleu": 15.424292713579701,
+    "rouge1": 40.91522598131817,
+    "rouge2": 21.068759058130563,
+    "rougeL": 40.076814047533055,
+    "test_loss": 2.6227700635790825,
+    "token_accuracy": 0.5058937156572938
+  },
+  "fasttext_frozen_epochs_run": 8,
+  "fasttext_frozen_training_seconds": 1478.8881084918976
+}

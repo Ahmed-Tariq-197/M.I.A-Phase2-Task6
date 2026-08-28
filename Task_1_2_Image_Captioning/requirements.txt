@@ -1,0 +1,17 @@
+torch>=2.4
+torchvision>=0.19
+numpy>=1.26
+Pillow>=10.0
+PyYAML>=6.0
+tqdm>=4.66
+nltk>=3.8
+rouge-score>=0.1.2
+fastapi>=0.115
+uvicorn[standard]>=0.30
+python-multipart>=0.0.9
+gradio>=4.44
+huggingface_hub>=0.24
+kagglehub>=0.3
+kaggle>=1.6
+scipy>=1.11
+matplotlib>=3.8

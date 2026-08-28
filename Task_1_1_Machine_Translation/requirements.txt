@@ -1,0 +1,8 @@
+torch>=2.4
+gensim>=4.3
+sacrebleu>=2.4
+rouge-score>=0.1.2
+scikit-learn>=1.4
+pandas>=2.2
+numpy>=1.26
+matplotlib>=3.8

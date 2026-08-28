@@ -1,0 +1,39 @@
+﻿# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/
+*.egg-info/
+build/
+dist/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+
+# Credentials / secrets
+kaggle.json
+.env
+!.env.example
+
+# Caches
+.cache/
+
+# Large/generated training artifacts
+Task-1.2/artifacts/checkpoints/*
+!Task-1.2/artifacts/checkpoints/.gitkeep
+Task-1.2/artifacts/features/*
+!Task-1.2/artifacts/features/.gitkeep
+
+# Generated local artifacts
+Task-1.2/artifacts/logs/*
+!Task-1.2/artifacts/logs/.gitkeep
+Task-1.2/artifacts/results/*
+!Task-1.2/artifacts/results/.gitkeep
