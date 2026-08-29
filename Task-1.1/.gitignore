@@ -1,0 +1,10 @@
+﻿# Python
+__pycache__/
+*.py[cod]
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Raw source data (large / reproducible)
+data/raw/eng-fra.txt
+data/raw/en_fr_pairs_cleaned.tsv
