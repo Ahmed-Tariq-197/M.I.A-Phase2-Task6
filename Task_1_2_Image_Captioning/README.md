@@ -236,11 +236,6 @@ Trained for 15 epochs (early stopping, patience 5) on an RTX 3050 Laptop GPU; be
 
 ![qualitative examples](docs/qualitative_examples.png)
 
-A short screen recording of the Gradio UI captioning a handful of uploaded photos, plus an example `curl -X POST .../caption` request/response pair, belongs here as well — save it to `docs/demo.mp4` and link it once recorded:
-
-```
-[Demo video](docs/demo.mp4)
-```
 
 ## Inference
 
